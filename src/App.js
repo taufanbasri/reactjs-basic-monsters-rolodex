@@ -1,6 +1,5 @@
 import { Component } from "react";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -8,21 +7,14 @@ class App extends Component {
     super();
 
     this.state = {
-      monsters: [
-        {
-          id: 1,
-          name: 'Boko'
-        },
-        {
-          id: 2,
-          name: 'Baka'
-        },
-        {
-          id: 3,
-          name: 'Biki'
-        },
-      ]
+      monsters: []
     };
+  }
+
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(user => this.setState({monsters: user}))
   }
 
   render() {
